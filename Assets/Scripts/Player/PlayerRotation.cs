@@ -9,14 +9,15 @@ public class PlayerRotation : MonoBehaviour
     [SerializeField] private float raycastLength;
     [SerializeField] private LayerMask hitMask;
     
-    void FixedUpdate()
+    public Vector3 GetNewRotation()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         
         if (Physics.Raycast(ray, out RaycastHit hit, raycastLength, hitMask))
         {
             var hitPos = hit.point;
-            transform.LookAt(new Vector3(hitPos.x, transform.position.y, hitPos.z));
+            return new Vector3(hitPos.x, transform.position.y, hitPos.z);
         }
+        return Vector3.zero;
     }
 }
