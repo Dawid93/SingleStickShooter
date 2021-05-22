@@ -7,6 +7,7 @@ namespace Player
 	{
 		[SerializeField] private PlayerRotation playerRotation;
 		[SerializeField] private PlayerShoot playerShoot;
+		[SerializeField] private PlayerSpell playerSpell;
 		[SerializeField] private UnitHealth playerHealth;
 
 		private Vector3 newRotation;
@@ -33,8 +34,12 @@ namespace Player
 		{
 			transform.LookAt(newRotation);
 			
-			if(Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0))
 				playerShoot.Shoot();
+			if (Input.GetKeyDown(KeyCode.Alpha1))
+				playerSpell.UseFirstSpell();
+			if (Input.GetKeyDown(KeyCode.Alpha2))
+				playerSpell.UseSecondSpell();
 		}
 	}
 }
