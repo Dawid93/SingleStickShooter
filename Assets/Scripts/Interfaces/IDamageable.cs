@@ -1,8 +1,11 @@
+using System;
+
 public interface IDamageable
-{
-	float MaxHealth { get; }
+{ 
+	event Action Dead;
+	
+	float Health { get; }
 
 	void SetHealth(float health);
 	void TakeDamage(float damage);
-	void Kill();
 }
