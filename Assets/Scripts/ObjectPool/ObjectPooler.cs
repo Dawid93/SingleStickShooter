@@ -48,9 +48,8 @@ namespace ObjectPool
                 
                 for (int i = 0; i < pool.PoolSize; i++)
                 {
-                    BasePoolObject bpo = Instantiate(pool.PoolObject, spawnPos, Quaternion.identity);
-                    string poolTag = string.IsNullOrEmpty(pool.PoolTag) == false ? pool.PoolTag : bpo.name;
-                    bpo.OnCreate(poolTag, this);
+                    BasePoolObject bpo = Instantiate(pool.PoolObject, spawnPos, Quaternion.identity); 
+                    bpo.OnCreate(pool.PoolTag, this);
                     bpo.gameObject.SetActive(false);
                     poolObjectsQ.Enqueue(bpo);
                 }
