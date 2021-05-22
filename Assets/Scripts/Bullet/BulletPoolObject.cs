@@ -9,6 +9,7 @@ public class BulletPoolObject : BasePoolObject
 	public static event Action<BulletPoolObject> BulletRemoved;
 	
 	[SerializeField] private float bulletSpeed = 40f;
+	[SerializeField] private float bulletDamage = 75f;
 	
 	public override void OnSpawn()
 	{
