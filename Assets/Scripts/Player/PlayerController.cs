@@ -16,6 +16,12 @@ namespace Player
 		{
 			currentDifficultySettings = DifficultyController.Instance.CurrentDifficultySettings;
 			playerHealth.SetHealth(currentDifficultySettings.PlayerHealth);
+			playerHealth.Dead += HandleDead;
+		}
+
+		private void HandleDead()
+		{
+			Debug.Log("Game Over");
 		}
 
 		private void FixedUpdate()
