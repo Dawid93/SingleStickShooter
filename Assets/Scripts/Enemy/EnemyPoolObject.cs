@@ -48,8 +48,8 @@ public class EnemyPoolObject : BasePoolObject
 		if (other.TryGetComponent(out UnitHealth unit))
 		{
 			unit.TakeDamage(damage);
+			SelfReturn();
 		}
-		SelfReturn();
 	}
 
 	public void Move(float deltaTime)
