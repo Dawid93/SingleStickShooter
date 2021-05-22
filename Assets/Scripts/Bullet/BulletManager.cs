@@ -14,11 +14,11 @@ public class BulletManager : MonoBehaviour
         BulletPoolObject.BulletRemoved += RemoveBullet;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         foreach (var bullet in bullets)
         {
-            bullet.Move(Time.deltaTime);
+            bullet.Move(Time.fixedDeltaTime);
         }
     }
 

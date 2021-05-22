@@ -13,11 +13,11 @@ public class EnemyManager : MonoBehaviour
 		EnemyPoolObject.EnemyRemoved += RemoveEnemy;
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		foreach (var enemy in enemies)
 		{
-			enemy.Move(Time.deltaTime);
+			enemy.Move(Time.fixedDeltaTime);
 		}
 	}
 
