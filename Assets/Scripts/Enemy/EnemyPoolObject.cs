@@ -31,6 +31,7 @@ public class EnemyPoolObject : BasePoolObject
 
 	public override void OnSpawn()
 	{
+		enemyMove.SetDefaultSpeed(speed);
 		RotateToTarget();
 		WasKilled = false;
 		enemyHealth.SetHealth(currentDifficultySettings.EnemyHealth);
@@ -54,7 +55,7 @@ public class EnemyPoolObject : BasePoolObject
 
 	public void Move(float deltaTime)
 	{
-		enemyMove.MoveForward(speed, deltaTime);
+		enemyMove.MoveForward(deltaTime);
 	}
 
 	private void RotateToTarget()

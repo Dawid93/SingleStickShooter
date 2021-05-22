@@ -1,8 +1,27 @@
 using UnityEngine;
 public class UnitMove : MonoBehaviour
 {
-	public void MoveForward(float speed, float deltaTime)
+	private float defaultSpeed;
+	private float currentSpeed;
+	
+	public void SetDefaultSpeed(float defaultSpeed)
 	{
-		transform.position += transform.forward * (speed * deltaTime);
+		this.defaultSpeed = defaultSpeed;
+		currentSpeed = defaultSpeed;
+	}
+
+	public void ChangeSpeed(float newSpeed)
+	{
+		currentSpeed = newSpeed;
+	}
+
+	public void ResetSpeed()
+	{
+		currentSpeed = defaultSpeed;
+	}
+	
+	public void MoveForward(float deltaTime)
+	{
+		transform.position += transform.forward * (currentSpeed * deltaTime);
 	}
 }
