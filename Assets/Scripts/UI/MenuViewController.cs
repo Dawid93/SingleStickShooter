@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuViewController : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class MenuViewController : MonoBehaviour
 
 	public void SetDifficulty(int difficulty)
 	{
-		Debug.Log($"Selected difficulty {(Difficulties)difficulty}");
+		DifficultyController.Instance.SetDifficulty((Difficulties) difficulty);
 		LoadNewGame();
 	}
 
@@ -45,6 +46,6 @@ public class MenuViewController : MonoBehaviour
 
 	private void LoadNewGame()
 	{
-		
+		SceneManager.LoadScene("Gameplay");
 	}
 }
