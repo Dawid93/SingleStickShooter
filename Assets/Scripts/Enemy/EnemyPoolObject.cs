@@ -39,4 +39,9 @@ public class EnemyPoolObject : BasePoolObject
 	{
 		transform.LookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z));
 	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		SelfReturn();
+	}
 }
