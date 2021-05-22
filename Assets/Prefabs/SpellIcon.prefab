@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.29973018, b: 0, a: 0.62352943}
+  m_Color: {r: 1, g: 0.29973018, b: 0, a: 0.12941177}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7075472, g: 0.01837785, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.027777778, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.675
+  m_FillAmount: 0.259
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -161,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2194096010304205731}
   - component: {fileID: 3376269852492284372}
+  - component: {fileID: 7235016564591505314}
   m_Layer: 5
   m_Name: SpellIcon
   m_TagString: Untagged
@@ -209,6 +210,20 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &7235016564591505314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436988844995118464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ed45d9133948f1a42ccfdffcc2c382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellIcon: {fileID: 6971674910817210313}
+  spellIconFill: {fileID: 2631084286320152931}
 --- !u!1 &7937371133704558385
 GameObject:
   m_ObjectHideFlags: 0
