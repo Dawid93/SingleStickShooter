@@ -16,6 +16,6 @@ MonoBehaviour:
   - poolTag: bullet
     poolObject: {fileID: 8631003502124427056, guid: c7840ac18d6c94477a6bf394ea575767, type: 3}
     poolSize: 100
-  - poolTag: 
-    poolObject: {fileID: 0}
-    poolSize: 0
+  - poolTag: enemy
+    poolObject: {fileID: 4916515054150122408, guid: b924f30fe8a76461d979e46899b0d7fb, type: 3}
+    poolSize: 100
