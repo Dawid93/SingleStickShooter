@@ -9,6 +9,8 @@ public class BulletPoolObject : BasePoolObject
 	public static event Action<BulletPoolObject> BulletRemoved;
 	
 	[SerializeField] private float bulletSpeed = 40f;
+	[SerializeField] private float bulletDamage = 75f;
+	[SerializeField] private UnitMove bulletMove;
 	
 	public override void OnSpawn()
 	{
@@ -20,17 +22,17 @@ public class BulletPoolObject : BasePoolObject
 		BulletRemoved?.Invoke(this);
 	}
 
-	public void Move(float deltaTime)
-	{
-		transform.position += transform.forward * bulletSpeed * deltaTime;
-	}
-
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.TryGetComponent(out PlayerController playerController))
+		if (other.TryGetComponent(out UnitHealth unit))
 		{
-			
+			unit.TakeDamage(bulletDamage);
 		}
 		SelfReturn();
+	}
+
+	public void Move(float deltaTime)
+	{
+		bulletMove.MoveForward(bulletSpeed, deltaTime);
 	}
 }

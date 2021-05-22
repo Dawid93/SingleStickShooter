@@ -6,16 +6,34 @@ using UnityEngine;
 
 public class DifficultyController : MonoBehaviour
 {
-    public static DifficultyController Instance { get; private set; }
+    public static DifficultyController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject("DifficultyController", typeof(DifficultyController)).GetComponent<DifficultyController>();
+            }
+
+            return instance;
+        }
+    }
+
+    private static DifficultyController instance = null;
     public DifficultySettings CurrentDifficultySettings { get; private set; }
 
     [SerializeField] private DifficultySettings[] settings;
     
+    private Difficulties defaultDifficulty = Difficulties.Normal;
+    
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
+            if (settings == null || settings.Length == 0)
+                settings = LoadSettings();
+            SetDifficulty(defaultDifficulty);
             DontDestroyOnLoad(this);
         }
     }
@@ -28,5 +46,10 @@ public class DifficultyController : MonoBehaviour
     private DifficultySettings GetDifficultySettings(Difficulties difficultyLevel)
     {
         return settings.First(x => x.DifficultyLevel == difficultyLevel);
+    }
+
+    private DifficultySettings[] LoadSettings()
+    {
+        return Resources.LoadAll<DifficultySettings>("Difficulties");
     }
 }
