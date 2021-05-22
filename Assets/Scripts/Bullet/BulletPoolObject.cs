@@ -1,5 +1,6 @@
 using System;
 using ObjectPool;
+using Player;
 using UnityEngine;
 
 public class BulletPoolObject : BasePoolObject
@@ -11,11 +12,25 @@ public class BulletPoolObject : BasePoolObject
 	
 	public override void OnSpawn()
 	{
-		throw new System.NotImplementedException();
+		BulletSpawn?.Invoke(this);
 	}
 
 	public override void OnReturn()
 	{
-		throw new System.NotImplementedException();
+		BulletRemoved?.Invoke(this);
+	}
+
+	public void Move(float deltaTime)
+	{
+		transform.position += transform.forward * bulletSpeed * deltaTime;
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.TryGetComponent(out PlayerController playerController))
+		{
+			
+		}
+		SelfReturn();
 	}
 }
