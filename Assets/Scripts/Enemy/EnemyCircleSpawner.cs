@@ -5,11 +5,18 @@ using Random = UnityEngine.Random;
 
 public class EnemyCircleSpawner : MonoBehaviour
 {
-	[SerializeField] private DifficultySettings difficultySettings;
 	[SerializeField] private float circleRadius = 25f;
 	[SerializeField] private Transform centerOfCircle;
 
+	private DifficultySettings difficultySettings;
 	private float elapsedTime = 0;
+	private float timeToSpawn;
+
+	private void Awake()
+	{
+		difficultySettings = DifficultyController.Instance.CurrentDifficultySettings;
+		timeToSpawn = difficultySettings.TimeToSpawn;
+	}
 
 	private void Update()
 	{
