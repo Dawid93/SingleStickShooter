@@ -12,6 +12,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 
 	[SerializeField] private UnitHealth enemyHealth;
 	[SerializeField] private UnitMove enemyMove;
+	[SerializeField] private MaterialColorModifier materialModifier;
 	[SerializeField] private float speed = 1f;
 	[SerializeField] private float damage = 50f;
 
@@ -23,11 +24,15 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 
 	public override void OnCreate(string poolTag, ObjectPooler objectPooler)
 	{
+		base.OnCreate(poolTag, objectPooler);
+		
 		if (currentDifficultySettings == null)
 			currentDifficultySettings = DifficultyController.Instance.CurrentDifficultySettings;
 		
-		base.OnCreate(poolTag, objectPooler);
+		materialModifier.Setup(GetComponent<Renderer>());
 		playerPos = FindObjectOfType<PlayerController>().transform.position;
+		
+		enemyHealth.Dead += HandleDead;
 	}
 
 	public override void OnSpawn()
@@ -36,7 +41,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 		RotateToTarget();
 		WasKilled = false;
 		enemyHealth.SetHealth(currentDifficultySettings.EnemyHealth);
-		enemyHealth.Dead += HandleDead;
+		materialModifier.SetColor(EnemyColorRandomizer.GetRandomColor());
 		EnemySpawn?.Invoke(this);
 	}
 
