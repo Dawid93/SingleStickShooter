@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-using ObjectPool;
-using UnityEngine;
+	using UnityEngine;
 
 public class SpellManager : BaseManager<BaseSpellPoolObject>
 {
