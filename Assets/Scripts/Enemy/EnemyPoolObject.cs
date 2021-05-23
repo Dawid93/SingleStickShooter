@@ -3,7 +3,7 @@ using ObjectPool;
 using Player;
 using UnityEngine;
 
-public class EnemyPoolObject : BasePoolObject
+public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 {
 	public static event Action<EnemyPoolObject> EnemySpawn;
 	public static event Action<EnemyPoolObject> EnemyRemoved;
@@ -67,5 +67,10 @@ public class EnemyPoolObject : BasePoolObject
 	{
 		WasKilled = true;
 		SelfReturn();
+	}
+
+	public void ChangeSpeed(float factorModifier)
+	{
+		enemyMove.ChangeSpeed(factorModifier);
 	}
 }

@@ -14,7 +14,7 @@ public class SlowdownBaseSpell : BaseSpellPoolObject
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.TryGetComponent(out UnitMove unit))
+		if (other.TryGetComponent(out ISpeedChangeable unit))
 		{
 			unit.ChangeSpeed(speedChangeSpellData.SpeedChangeFactor);
 		}
