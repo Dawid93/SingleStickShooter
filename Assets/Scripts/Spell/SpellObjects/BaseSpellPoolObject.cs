@@ -2,7 +2,7 @@ using System;
 using ObjectPool;
 using UnityEngine;
 
-public abstract class BaseSpellPoolObject : BasePoolObject
+public abstract class BaseSpellPoolObject : BasePoolObject, IMoveable
 {
 	public static event Action<BaseSpellPoolObject> SpellCreate;
 	public static event Action<BaseSpellPoolObject> SpellRemove;
@@ -34,8 +34,13 @@ public abstract class BaseSpellPoolObject : BasePoolObject
 		SpellRemove?.Invoke(this);
 	}
 
-	public void Move(float deltaTime)
+	public void Move()
 	{
-		spellMove.MoveRigidbodyForward(deltaTime);
+		spellMove.UseVelocity();
+	}
+
+	public void StopMove()
+	{
+		spellMove.ResetVelocity();
 	}
 }

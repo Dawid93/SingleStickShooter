@@ -18,12 +18,22 @@ public abstract class BaseManager<T> : MonoBehaviour, IInitializable
 		switch (state)
 		{
 			case GameStates.GameStart:
-				isGameStarted = true;
+				HandleGameStart();
 				break;
 			case GameStates.GameOver:
-				isGameStarted = false;
+				HandleGameOver();
 				break;
 		}
+	}
+
+	protected virtual void HandleGameStart()
+	{
+		isGameStarted = true;
+	}
+
+	protected virtual void HandleGameOver()
+	{
+		isGameStarted = false;
 	}
 	
 	protected void AddUnit(T unit)

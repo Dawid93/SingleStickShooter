@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletManager : BaseManager<BulletPoolObject>
+public class BulletManager : BaseMoveManager<BulletPoolObject>
 {
     public override void Initialize()
     {
@@ -8,17 +8,6 @@ public class BulletManager : BaseManager<BulletPoolObject>
 		
         BulletPoolObject.BulletSpawn += AddUnit;
         BulletPoolObject.BulletRemoved += RemoveUnit;
-    }
-
-    private void FixedUpdate()
-    {
-        if (!isGameStarted)
-            return;
-        
-        foreach (var unit in units)
-        {
-            unit.Move(Time.fixedDeltaTime);
-        }
     }
 
     protected override void OnDestroy()
