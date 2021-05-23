@@ -6,29 +6,30 @@ public class TimerManager : MonoBehaviour
 {
 	private List<Timer> timers;
 
+	[SerializeField] private int timersCount;
+
 	private void Awake()
 	{
 		Timer.TimerCreate += HandleCreateTimer;
-		Timer.TimerStop += HandleStopTimer;
 		
 		timers = new List<Timer>();
 	}
 
 	private void Update()
 	{
-		foreach (var timer in timers)
+		for (int i = 0; i < timers.Count; i++)
 		{
-			timer.Countdown(Time.deltaTime);
+			if (timers[i].IsFinished)
+				timers.Remove(timers[i]);
+			else
+				timers[i].Countdown(Time.deltaTime);
 		}
+
+		timersCount = timers.Count;
 	}
 
 	private void HandleCreateTimer(Timer timer)
 	{
 		timers.Add(timer);
-	}
-
-	private void HandleStopTimer(Timer timer)
-	{
-		timers.Remove(timer);
 	}
 }

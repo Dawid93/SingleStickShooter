@@ -17,5 +17,5 @@ MonoBehaviour:
   backgroundImageColor: {r: 0.5283019, g: 0, b: 0, a: 0.1254902}
   fillImageColor: {r: 1, g: 0, b: 0, a: 1}
   moveSpeed: 0
-  coolDownTime: 0
+  coolDownTime: 2
   damage: 0
