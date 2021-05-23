@@ -2532,6 +2532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPos: {x: 1000, y: -1000, z: 1000}
   poolContainer: {fileID: 11400000, guid: 61f4e1c911b8846f98bb0c966032dc80, type: 2}
+  increasePoolValue: 10
+  minCountToIncreasePool: 2
 --- !u!4 &2069156013
 Transform:
   m_ObjectHideFlags: 0

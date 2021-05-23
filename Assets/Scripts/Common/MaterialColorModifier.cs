@@ -4,19 +4,19 @@ public class MaterialColorModifier : MonoBehaviour
 {
 	private int colorId;
 	private MaterialPropertyBlock materialBlock;
-	private Renderer renderer;
+	private Renderer objectRenderer;
 	
-	public void Setup(Renderer renderer)
+	public void Setup(Renderer objectRenderer)
 	{
-		this.renderer = renderer;
+		this.objectRenderer = objectRenderer;
 		materialBlock = new MaterialPropertyBlock();
 		colorId = Shader.PropertyToID("_BaseColor");
 	}
 
 	public void SetColor(Color color)
 	{
-		renderer.GetPropertyBlock(materialBlock);
+		objectRenderer.GetPropertyBlock(materialBlock);
 		materialBlock.SetColor(colorId, color);
-		renderer.SetPropertyBlock(materialBlock);
+		objectRenderer.SetPropertyBlock(materialBlock);
 	}
 }

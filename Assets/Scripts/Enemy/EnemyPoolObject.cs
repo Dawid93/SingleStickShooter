@@ -27,7 +27,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 		
 		if (currentDifficultySettings == null)
 			currentDifficultySettings = DifficultyController.Instance.CurrentDifficultySettings;
-		
+
 		materialModifier.Setup(GetComponent<Renderer>());
 		playerPos = FindObjectOfType<PlayerController>().transform.position;
 		
@@ -61,7 +61,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 
 	public void Move(float deltaTime)
 	{
-		enemyMove.MoveForward(deltaTime);
+		enemyMove.MoveTransformForward(deltaTime);
 	}
 
 	private void RotateToTarget()

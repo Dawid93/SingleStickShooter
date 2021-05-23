@@ -103,6 +103,7 @@ MonoBehaviour:
   materialModifier: {fileID: -329202545861570830}
   speed: 1
   damage: 50
+  rBody: {fileID: 0}
 --- !u!65 &1896123644815563635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111,7 +112,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5258957198397490939}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5000001, y: 0.50000024, z: 0.50000024}
