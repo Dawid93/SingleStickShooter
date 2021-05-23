@@ -2,7 +2,7 @@ using System;
 using ObjectPool;
 using UnityEngine;
 
-public class BulletPoolObject : BasePoolObject
+public class BulletPoolObject : BasePoolObject, IMoveable
 {
 	public static event Action<BulletPoolObject> BulletSpawn;
 	public static event Action<BulletPoolObject> BulletRemoved;
@@ -39,8 +39,13 @@ public class BulletPoolObject : BasePoolObject
 		SelfReturn();
 	}
 
-	public void Move(float deltaTime)
+	public void Move()
 	{
-		bulletMove.MoveRigidbodyForward(deltaTime);
+		bulletMove.UseVelocity();
+	}
+
+	public void StopMove()
+	{
+		bulletMove.ResetVelocity();
 	}
 }
