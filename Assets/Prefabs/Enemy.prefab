@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1896123644815563635}
   - component: {fileID: -106792153183999581}
   - component: {fileID: -1978025314598505635}
+  - component: {fileID: 2345988665872301948}
   - component: {fileID: -329202545861570830}
   m_Layer: 8
   m_Name: Enemy
@@ -103,7 +104,7 @@ MonoBehaviour:
   materialModifier: {fileID: -329202545861570830}
   speed: 1
   damage: 50
-  rBody: {fileID: 0}
+  rBody: {fileID: 2345988665872301948}
 --- !u!65 &1896123644815563635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -141,6 +142,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203b0cacc20e430a82f1cb2f4f3fb140, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &2345988665872301948
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258957198397490939}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &-329202545861570830
 MonoBehaviour:
   m_ObjectHideFlags: 0
