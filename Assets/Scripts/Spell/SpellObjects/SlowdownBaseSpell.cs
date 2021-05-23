@@ -16,7 +16,7 @@ public class SlowdownBaseSpell : BaseSpellPoolObject
 	{
 		if (other.TryGetComponent(out ISpeedChangeable unit))
 		{
-			unit.ChangeSpeed(speedChangeSpellData.SpeedChangeFactor);
+			unit.ChangeSpeed(speedChangeSpellData.SpeedChangeFactor, speedChangeSpellData.EffectDuration);
 		}
 	}
 }

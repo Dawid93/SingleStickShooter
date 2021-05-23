@@ -21,9 +21,10 @@ public class EnemyCircleSpawner : MonoBehaviour
 	private void Update()
 	{
 		elapsedTime += Time.deltaTime;
-		if (elapsedTime >= .4f)
+		
+		if (elapsedTime >= timeToSpawn)
 		{
-			elapsedTime -= .4f;
+			elapsedTime -= timeToSpawn;
 			Spawn();
 		}
 	}

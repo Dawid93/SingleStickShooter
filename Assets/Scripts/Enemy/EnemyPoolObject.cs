@@ -19,6 +19,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 
 	private Vector3 playerPos;
 	private float maxHealth;
+	private Timer timer;
 
 	public override void OnCreate(string poolTag, ObjectPooler objectPooler)
 	{
@@ -69,8 +70,20 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 		SelfReturn();
 	}
 
-	public void ChangeSpeed(float factorModifier)
+	public void ChangeSpeed(float factorModifier, float duration)
 	{
-		enemyMove.ChangeSpeed(factorModifier);
+		if (timer == null)
+		{
+			timer = new Timer(duration, OnTimerComplete);
+			enemyMove.ChangeSpeed(factorModifier);
+		}
+		else
+			timer.ResetTimer();
+	}
+
+	private void OnTimerComplete()
+	{
+		timer = null;
+		enemyMove.ResetSpeed();
 	}
 }

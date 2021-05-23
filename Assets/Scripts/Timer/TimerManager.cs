@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimerManager : MonoBehaviour
 {
 	private List<Timer> timers;
-
+	
 	[SerializeField] private int timersCount;
 
 	private void Awake()

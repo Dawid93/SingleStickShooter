@@ -5,11 +5,11 @@ public class Timer
 	public static event Action<Timer> TimerCreate;
 	public static event Action<Timer> TimerStop;
 	public event Action TimerUpdate;
-	
+
 	public bool IsFinished { get; private set; }
 	private Action Complete { get; }
 	private float Time { get; }
-	
+
 	private float ellapsedTime;
 
 	public Timer(float time, Action onComplete)
@@ -23,6 +23,9 @@ public class Timer
 
 	public void StopTimer()
 	{
+		if (IsFinished)
+			return;
+		
 		IsFinished = true;
 		TimerStop?.Invoke(this);
 	}
@@ -31,7 +34,7 @@ public class Timer
 	{
 		if (IsFinished)
 			return;
-		
+
 		ellapsedTime += deltaTime;
 		TimerUpdate?.Invoke();
 
@@ -44,11 +47,15 @@ public class Timer
 
 	public void ResetTimer()
 	{
+		if (IsFinished)
+			return;
 		ellapsedTime = 0;
 	}
 
 	public float GetNormalizedTime()
 	{
+		if (IsFinished)
+			return 1;
 		return ellapsedTime / Time;
 	}
 }
