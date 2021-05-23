@@ -3,32 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour
+public class BulletManager : BaseManager<BulletPoolObject>
 {
-    private List<BulletPoolObject> bullets;
-
-    private void Awake()
+    public override void Initialize()
     {
-        bullets = new List<BulletPoolObject>();
-        BulletPoolObject.BulletSpawn += AddNewBullet;
-        BulletPoolObject.BulletRemoved += RemoveBullet;
+        base.Initialize();
+		
+        BulletPoolObject.BulletSpawn += AddUnit;
+        BulletPoolObject.BulletRemoved += RemoveUnit;
     }
 
     private void FixedUpdate()
     {
-        foreach (var bullet in bullets)
+        if (!isGameStarted)
+            return;
+        
+        foreach (var unit in units)
         {
-            bullet.Move(Time.fixedDeltaTime);
+            unit.Move(Time.fixedDeltaTime);
         }
-    }
-
-    private void AddNewBullet(BulletPoolObject bullet)
-    {
-        bullets.Add(bullet);
-    }
-    
-    private void RemoveBullet(BulletPoolObject bullet)
-    {
-        bullets.Remove(bullet);
     }
 }

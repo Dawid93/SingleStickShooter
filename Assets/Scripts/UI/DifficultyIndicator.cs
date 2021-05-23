@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class DifficultyIndicator : MonoBehaviour
+public class DifficultyIndicator : MonoBehaviour, IInitializable
 {
     [SerializeField] private TextMeshProUGUI label;
 
-    private void Awake()
+    public void Initialize()
     {
         label.SetText($"Current difficulty {DifficultyController.Instance.CurrentDifficultySettings}");
     }

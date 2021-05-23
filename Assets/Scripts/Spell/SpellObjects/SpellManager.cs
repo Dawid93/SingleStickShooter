@@ -1,32 +1,25 @@
 using System.Collections.Generic;
+using ObjectPool;
 using UnityEngine;
 
-public class SpellManager : MonoBehaviour
+public class SpellManager : BaseManager<BaseSpellPoolObject>
 {
-	private List<BaseSpellPoolObject> spells;
-
-	private void Awake()
+	public override void Initialize()
 	{
-		spells = new List<BaseSpellPoolObject>();
-		BaseSpellPoolObject.SpellCreate += AddSpell;
-		BaseSpellPoolObject.SpellRemove += RemoveSpell;
+		base.Initialize();
+		
+		BaseSpellPoolObject.SpellCreate += AddUnit;
+		BaseSpellPoolObject.SpellRemove += RemoveUnit;
 	}
 
 	private void FixedUpdate()
 	{
-		foreach (var spell in spells)
+		if (!isGameStarted)
+			return;
+		
+		foreach (var unit in units)
 		{
-			spell.Move(Time.fixedDeltaTime);
+			unit.Move(Time.fixedDeltaTime);
 		}
-	}
-
-	private void AddSpell(BaseSpellPoolObject spell)
-	{
-		spells.Add(spell);
-	}
-
-	private void RemoveSpell(BaseSpellPoolObject spell)
-	{
-		spells.Remove(spell);
 	}
 }

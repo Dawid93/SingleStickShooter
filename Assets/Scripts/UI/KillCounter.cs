@@ -2,13 +2,13 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class KillCounter : MonoBehaviour
+public class KillCounter : MonoBehaviour, IInitializable
 {
 	[SerializeField] private TextMeshProUGUI label;
 
 	private int counter;
 	
-	private void Awake()
+	public void Initialize()
 	{
 		counter = 0;
 		label.SetText(counter.ToString());

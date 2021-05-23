@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ObjectPool
 {
-    public class ObjectPooler : MonoBehaviour
+    public class ObjectPooler : MonoBehaviour, IInitializable
     {
         public static ObjectPooler Instance
         {
@@ -26,7 +25,10 @@ namespace ObjectPool
         {
             if (_instance == null)
                 _instance = this;
-            
+        }
+        
+        public void Initialize()
+        {
             InitPools();
         }
 
