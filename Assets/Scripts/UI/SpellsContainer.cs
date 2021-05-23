@@ -13,15 +13,18 @@ public class SpellsContainer : MonoBehaviour
 
 	private void CreateIcons()
 	{
-		CreateIcon(spells.FirstSpellController.SpellData);
-		CreateIcon(spells.SecondSpellController.SpellData);
+		CreateIcon(spells.FirstBaseSpellController);
+		CreateIcon(spells.SecondBaseSpellController);
 	}
 
-	private void CreateIcon(BaseSpellData spell)
+	private void CreateIcon(BaseSpellController baseSpellController)
 	{
+		var spellData = baseSpellController.SpellData;
+		
 		var icon = Instantiate(spellIconPrefab, transform);
-		icon.SetImage(spell.SpellImage);
-		icon.SetColor(spell.BackgroundImageColor, spell.FillImageColor);
+		icon.SetSpellController(baseSpellController);
+		icon.SetImage(spellData.SpellImage);
+		icon.SetColor(spellData.BackgroundImageColor, spellData.FillImageColor);
 		icon.SetFill(0);
 	}
 }

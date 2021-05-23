@@ -7,14 +7,21 @@ public class SpellIcon : MonoBehaviour
 	[SerializeField] private Image spellIcon;
 	[SerializeField] private Image spellIconFill;
 
-	private SpellController spellController;
+	private BaseSpellController baseSpellController;
 	private Timer currentTimer;
 
-	public void SetSpellController(SpellController spellController)
+	public void SetSpellController(BaseSpellController baseSpellController)
 	{
-		this.spellController = spellController;
-		this.spellController.StartCooldown += HandleStartCooldownCountdown;
-		this.spellController.FinishCooldown += HandleStopCountdown;
+		this.baseSpellController = baseSpellController;
+		this.baseSpellController.StartCooldown += HandleStartCooldownCountdown;
+		this.baseSpellController.FinishCooldown += HandleStopCountdown;
+		this.baseSpellController.SpellUse += HandleBaseSpellUse;
+	}
+
+	public void SetImage(Sprite icon)
+	{
+		spellIcon.sprite = icon;
+		spellIconFill.sprite = icon;
 	}
 
 	private void HandleStartCooldownCountdown(Timer timer)
@@ -35,10 +42,9 @@ public class SpellIcon : MonoBehaviour
 		SetFill(currentTimer.GetNormalizedTime());
 	}
 
-	public void SetImage(Sprite icon)
+	private void HandleBaseSpellUse()
 	{
-		spellIcon.sprite = icon;
-		spellIconFill.sprite = icon;
+		SetFill(0);
 	}
 
 	public void SetColor(Color background, Color fill)

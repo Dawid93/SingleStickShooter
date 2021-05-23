@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class GameplaySpells : MonoBehaviour
 {
-	public SpellController FirstSpellController => firstSpellController;
-	public SpellController SecondSpellController => secondSpellController;
+	public BaseSpellController FirstBaseSpellController => firstBaseSpellController;
+	public BaseSpellController SecondBaseSpellController => secondBaseSpellController;
 	
-	[SerializeField] private SpellController firstSpellController;
-	[SerializeField] private SpellController secondSpellController;
+	[SerializeField] private BaseSpellController firstBaseSpellController;
+	[SerializeField] private BaseSpellController secondBaseSpellController;
 }

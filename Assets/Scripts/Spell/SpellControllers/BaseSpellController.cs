@@ -1,14 +1,14 @@
 using System;
 using UnityEngine;
 
-public class SpellController : MonoBehaviour
+public abstract class BaseSpellController : MonoBehaviour
 {
 	public event Action<Timer> StartCooldown;
 	public event Action FinishCooldown;
 	public event Action SpellUse;
 	
 	public bool IsAvailable { get; private set; }
-	public BaseSpellData SpellData { get; private set; }
+	public BaseSpellData SpellData => spellData;
 
 	[SerializeField] private BaseSpellData spellData;
 	
@@ -32,17 +32,17 @@ public class SpellController : MonoBehaviour
 		FinishCooldown?.Invoke();
 	}
 	
-	public void UseSpell()
+	public void UseSpell(Vector3 spawnPoint, Quaternion rotation)
 	{
 		if (!IsAvailable) 
 			return;
 		
 		IsAvailable = false;
-		PrepareSpell();
+		PrepareSpell(spawnPoint, rotation);
 		SpellUse?.Invoke();
 	}
 
-	protected virtual void PrepareSpell()
+	protected virtual void PrepareSpell(Vector3 spawnPoint, Quaternion rotation)
 	{
 	}
 }
