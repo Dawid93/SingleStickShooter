@@ -2,32 +2,24 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour, IInitializable
+public class EnemyManager : BaseManager<EnemyPoolObject>
 {
-	private List<EnemyPoolObject> enemies;
-
-	public void Initialize()
+	public override void Initialize()
 	{
-		enemies = new List<EnemyPoolObject>();
-		EnemyPoolObject.EnemySpawn += AddEnemy;
-		EnemyPoolObject.EnemyRemoved += RemoveEnemy;
+		base.Initialize();
+		
+		EnemyPoolObject.EnemySpawn += AddUnit;
+		EnemyPoolObject.EnemyRemoved += RemoveUnit;
 	}
 
 	private void FixedUpdate()
 	{
-		foreach (var enemy in enemies)
+		if (!isGameStarted)
+			return;
+		
+		foreach (var unit in units)
 		{
-			enemy.Move(Time.fixedDeltaTime);
+			unit.Move(Time.fixedDeltaTime);
 		}
-	}
-
-	private void AddEnemy(EnemyPoolObject enemy)
-	{
-		enemies.Add(enemy);
-	}
-
-	private void RemoveEnemy(EnemyPoolObject enemy)
-	{
-		enemies.Remove(enemy);
 	}
 }

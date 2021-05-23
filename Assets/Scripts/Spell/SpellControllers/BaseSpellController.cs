@@ -16,7 +16,20 @@ public abstract class BaseSpellController : MonoBehaviour, IInitializable
 
 	public void Initialize()
 	{
-		StartCountdown();
+		GameController.GameStateChange += HandleGameStateChanged;
+	}
+
+	private void HandleGameStateChanged(GameStates state)
+	{
+		switch (state)
+		{
+			case GameStates.GameStart:
+				StartCountdown();
+				break;
+			case GameStates.GameOver:
+				timer?.StopTimer();
+				break;
+		}
 	}
 
 	private void StartCountdown()
