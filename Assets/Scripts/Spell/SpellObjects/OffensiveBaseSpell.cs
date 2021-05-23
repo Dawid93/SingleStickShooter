@@ -20,6 +20,9 @@ namespace Spell.SpellObjects
 			{
 				unit.TakeDamage(offensiveSpellData.Damage);
 			}
+			
+			if (other.gameObject.layer == Consts.BoundLayer)
+				SelfReturn();
 		}
 	}
 }

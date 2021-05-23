@@ -40,6 +40,7 @@ public abstract class BaseSpellController : MonoBehaviour
 		IsAvailable = false;
 		PrepareSpell(spawnPoint, rotation);
 		SpellUse?.Invoke();
+		StartCountdown();
 	}
 
 	protected virtual void PrepareSpell(Vector3 spawnPoint, Quaternion rotation)
