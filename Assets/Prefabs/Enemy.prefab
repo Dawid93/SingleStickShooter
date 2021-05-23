@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1896123644815563635}
   - component: {fileID: -106792153183999581}
   - component: {fileID: -1978025314598505635}
-  m_Layer: 0
+  - component: {fileID: -329202545861570830}
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealth: {fileID: -1978025314598505635}
   enemyMove: {fileID: -106792153183999581}
+  materialModifier: {fileID: -329202545861570830}
   speed: 1
   damage: 50
 --- !u!65 &1896123644815563635
@@ -136,5 +138,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 203b0cacc20e430a82f1cb2f4f3fb140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-329202545861570830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258957198397490939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4feed7f83855426a9fdcb7b43993f8f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
