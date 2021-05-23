@@ -2,7 +2,7 @@ using System;
 using ObjectPool;
 using UnityEngine;
 
-public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
+public class EnemyPoolObject : BasePoolObject, ISpeedChangeable, IMoveable
 {
 	public static event Action<EnemyPoolObject> EnemySpawn;
 	public static event Action<EnemyPoolObject> EnemyRemoved;
@@ -62,11 +62,6 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 		}
 	}
 
-	public void Move(float deltaTime)
-	{
-		enemyMove.MoveRigidbodyForward(deltaTime);
-	}
-
 	private void RotateToTarget()
 	{
 		transform.LookAt(new Vector3(playerPos.x, transform.position.y, playerPos.z));
@@ -93,5 +88,15 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 	{
 		timer = null;
 		enemyMove.ResetSpeed();
+	}
+
+	public void Move()
+	{
+		enemyMove.UseVelocity();
+	}
+
+	public void StopMove()
+	{
+		enemyMove.ResetVelocity();
 	}
 }

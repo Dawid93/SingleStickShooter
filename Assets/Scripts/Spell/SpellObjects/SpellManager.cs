@@ -1,6 +1,6 @@
 	using UnityEngine;
 
-public class SpellManager : BaseManager<BaseSpellPoolObject>
+public class SpellManager : BaseMoveManager<BaseSpellPoolObject>
 {
 	public override void Initialize()
 	{
@@ -8,17 +8,6 @@ public class SpellManager : BaseManager<BaseSpellPoolObject>
 		
 		BaseSpellPoolObject.SpellCreate += AddUnit;
 		BaseSpellPoolObject.SpellRemove += RemoveUnit;
-	}
-
-	private void FixedUpdate()
-	{
-		if (!isGameStarted)
-			return;
-		
-		foreach (var unit in units)
-		{
-			unit.Move(Time.fixedDeltaTime);
-		}
 	}
 
 	protected override void OnDestroy()

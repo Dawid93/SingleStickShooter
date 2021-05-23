@@ -25,15 +25,14 @@ public class UnitMove : MonoBehaviour
 	{
 		currentSpeed = defaultSpeed;
 	}
-	
-	public void MoveTransformForward(float deltaTime)
+
+	public void UseVelocity()
 	{
-		transform.position += transform.forward * (currentSpeed * deltaTime);
+		rBody.velocity = transform.forward * currentSpeed;
 	}
 
-	public void MoveRigidbodyForward(float deltaTime)
+	public void ResetVelocity()
 	{
-		var step = transform.forward * (currentSpeed * deltaTime);
-		rBody.MovePosition(rBody.position + step);
+		rBody.velocity = Vector3.zero;
 	}
 }
