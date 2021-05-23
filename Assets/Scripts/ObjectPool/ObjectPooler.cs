@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ObjectPool
@@ -18,6 +19,8 @@ namespace ObjectPool
         
         [SerializeField] private Vector3 spawnPos;
         [SerializeField] private PoolContainer poolContainer;
+        [SerializeField] private int increasePoolValue = 10;
+        [SerializeField] private int minCountToIncreasePool = 2;
 
         private Dictionary<string, Queue<BasePoolObject>> _poolDict;
         private bool _poolIsInit;
@@ -48,17 +51,27 @@ namespace ObjectPool
             {
                 Queue<BasePoolObject> poolObjectsQ = new Queue<BasePoolObject>();
                 
-                for (int i = 0; i < pool.PoolSize; i++)
-                {
-                    BasePoolObject bpo = Instantiate(pool.PoolObject, spawnPos, Quaternion.identity); 
-                    bpo.OnCreate(pool.PoolTag, this);
-                    bpo.gameObject.SetActive(false);
-                    poolObjectsQ.Enqueue(bpo);
-                }
+                AddObjectsToPool(pool.PoolTag, pool.PoolObject, poolObjectsQ, pool.PoolSize);
+                
                 _poolDict.Add(pool.PoolTag, poolObjectsQ);
             }
 
             _poolIsInit = true;
+        }
+
+        private void AddObjectsToPool(string poolTag, BasePoolObject poolObject, Queue<BasePoolObject> poolObjectsQueue,
+            int amount)
+        {
+            for (int i = 0; i < amount; i++)
+                AddObjectToPool(poolTag, poolObject, poolObjectsQueue);
+        }
+
+        private void AddObjectToPool(string poolTag, BasePoolObject poolObject, Queue<BasePoolObject> poolObjectsQueue)
+        {
+            BasePoolObject bpo = Instantiate(poolObject, spawnPos, Quaternion.identity); 
+            bpo.OnCreate(poolTag, this);
+            bpo.gameObject.SetActive(false);
+            poolObjectsQueue.Enqueue(bpo);
         }
 
         public BasePoolObject GetFromPool(string poolTag, Vector3 pos, Quaternion rot, Transform parent)
@@ -70,6 +83,9 @@ namespace ObjectPool
             if (!_poolDict.ContainsKey(poolTag))
                 return null;
 
+            if(_poolDict[poolTag].Count <= minCountToIncreasePool)
+                IncreasePool(poolTag);
+            
             BasePoolObject poolObject = _poolDict[poolTag].Dequeue();
             Transform poolTransform = poolObject.transform;
             
@@ -78,9 +94,18 @@ namespace ObjectPool
             poolTransform.localRotation = rot;
             poolObject.gameObject.SetActive(true);
             poolObject.OnSpawn();
-            
-            _poolDict[poolTag].Enqueue(poolObject);
             return poolObject;
+        }
+
+        private void IncreasePool(string poolTag)
+        {
+            var pool = GetPoolWithPoolTag(poolTag);
+            AddObjectsToPool(poolTag, pool.PoolObject, _poolDict[poolTag], increasePoolValue);
+        }
+
+        private Pool GetPoolWithPoolTag(string poolTag)
+        {
+            return poolContainer.Pools.First(x => x.PoolTag == poolTag);
         }
 
         public void ReturnToPool(BasePoolObject basePoolObject)
@@ -90,6 +115,7 @@ namespace ObjectPool
             poolTransform.SetParent(null);
             poolTransform.position = spawnPos;
             basePoolObject.gameObject.SetActive(false);
+            _poolDict[basePoolObject.PoolTag].Enqueue(basePoolObject);
         }
     }
 }
