@@ -2,12 +2,12 @@ using System;
 using ObjectPool;
 using UnityEngine;
 
-public abstract class SpellPoolObject : BasePoolObject
+public abstract class BaseSpellPoolObject : BasePoolObject
 {
-	public static event Action<SpellPoolObject> SpellCreate;
-	public static event Action<SpellPoolObject> SpellRemove;
+	public static event Action<BaseSpellPoolObject> SpellCreate;
+	public static event Action<BaseSpellPoolObject> SpellRemove;
 	
-	[SerializeField] private BaseSpellData spellData;
+	[SerializeField] protected BaseSpellData spellData;
 	[SerializeField] private UnitMove spellMove;
 
 	private float speed;
@@ -15,6 +15,7 @@ public abstract class SpellPoolObject : BasePoolObject
 	public override void OnCreate(string poolTag, ObjectPooler objectPooler)
 	{
 		base.OnCreate(poolTag, objectPooler);
+		// GetComponent<MeshRenderer>().enabled = false;
 		speed = spellData.MoveSpeed;
 	}
 

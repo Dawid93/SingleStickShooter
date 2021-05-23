@@ -10,9 +10,9 @@ public class UnitMove : MonoBehaviour
 		currentSpeed = defaultSpeed;
 	}
 
-	public void ChangeSpeed(float newSpeed)
+	public void ChangeSpeed(float factorModifier)
 	{
-		currentSpeed = newSpeed;
+		currentSpeed = currentSpeed * factorModifier;
 	}
 
 	public void ResetSpeed()
