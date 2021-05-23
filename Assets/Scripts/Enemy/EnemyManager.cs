@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IInitializable
 {
 	private List<EnemyPoolObject> enemies;
 
-	private void Awake()
+	public void Initialize()
 	{
 		enemies = new List<EnemyPoolObject>();
 		EnemyPoolObject.EnemySpawn += AddEnemy;

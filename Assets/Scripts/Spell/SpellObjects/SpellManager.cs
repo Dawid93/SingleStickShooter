@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpellManager : MonoBehaviour
+public class SpellManager : MonoBehaviour, IInitializable
 {
 	private List<BaseSpellPoolObject> spells;
 
-	private void Awake()
+	public void Initialize()
 	{
 		spells = new List<BaseSpellPoolObject>();
 		BaseSpellPoolObject.SpellCreate += AddSpell;

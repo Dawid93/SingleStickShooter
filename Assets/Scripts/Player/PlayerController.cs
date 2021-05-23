@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player
 {
-	public class PlayerController : MonoBehaviour
+	public class PlayerController : MonoBehaviour, IInitializable
 	{
 		[SerializeField] private PlayerRotation playerRotation;
 		[SerializeField] private PlayerShoot playerShoot;
@@ -13,7 +13,7 @@ namespace Player
 		private Vector3 newRotation;
 		private DifficultySettings currentDifficultySettings;
 
-		private void Awake()
+		public void Initialize()
 		{
 			currentDifficultySettings = DifficultyController.Instance.CurrentDifficultySettings;
 			playerHealth.SetHealth(currentDifficultySettings.PlayerHealth);

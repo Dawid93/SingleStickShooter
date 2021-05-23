@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-public class SpellsContainer : MonoBehaviour
+public class SpellsContainer : MonoBehaviour, IInitializable
 {
 	[SerializeField] private SpellIcon spellIconPrefab;
 	[SerializeField] private GameplaySpells spells;
 
-	private void Awake()
+	public void Initialize()
 	{
 		CreateIcons();
 	}

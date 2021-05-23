@@ -3,7 +3,7 @@ using ObjectPool;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemyCircleSpawner : MonoBehaviour
+public class EnemyCircleSpawner : MonoBehaviour, IInitializable
 {
 	[SerializeField] private float circleRadius = 25f;
 	[SerializeField] private Transform centerOfCircle;
@@ -12,7 +12,7 @@ public class EnemyCircleSpawner : MonoBehaviour
 	private float elapsedTime = 0;
 	private float timeToSpawn;
 
-	private void Awake()
+	public void Initialize()
 	{
 		difficultySettings = DifficultyController.Instance.CurrentDifficultySettings;
 		timeToSpawn = difficultySettings.TimeToSpawn;

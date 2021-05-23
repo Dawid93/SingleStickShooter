@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimerManager : MonoBehaviour
+public class TimerManager : MonoBehaviour, IInitializable
 {
 	private List<Timer> timers;
 	
 	[SerializeField] private int timersCount;
 
-	private void Awake()
+	public void Initialize()
 	{
 		Timer.TimerCreate += HandleCreateTimer;
 		

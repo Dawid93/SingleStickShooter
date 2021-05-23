@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour
+public class BulletManager : MonoBehaviour, IInitializable
 {
     private List<BulletPoolObject> bullets;
 
-    private void Awake()
+    public void Initialize()
     {
         bullets = new List<BulletPoolObject>();
         BulletPoolObject.BulletSpawn += AddNewBullet;

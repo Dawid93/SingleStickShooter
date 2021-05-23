@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public abstract class BaseSpellController : MonoBehaviour
+public abstract class BaseSpellController : MonoBehaviour, IInitializable
 {
 	public event Action<Timer> StartCooldown;
 	public event Action FinishCooldown;
@@ -14,7 +14,7 @@ public abstract class BaseSpellController : MonoBehaviour
 	
 	private Timer timer;
 
-	private void Start()
+	public void Initialize()
 	{
 		StartCountdown();
 	}
