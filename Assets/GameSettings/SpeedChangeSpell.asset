@@ -16,7 +16,7 @@ MonoBehaviour:
   spellImage: {fileID: 21300000, guid: b71f9d8149bc44f26a960ce94857439e, type: 3}
   backgroundImageColor: {r: 0, g: 0.17565134, b: 0.6509434, a: 0.1254902}
   fillImageColor: {r: 0, g: 0.43586493, b: 1, a: 1}
-  moveSpeed: 0
+  moveSpeed: 10
   coolDownTime: 7
-  speedChangeFactor: 0
-  effectDuration: 0
+  speedChangeFactor: 0.5
+  effectDuration: 5
