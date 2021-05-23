@@ -22,6 +22,10 @@ public class KillCounter : MonoBehaviour, IInitializable
 			counter++;
 			label.SetText(counter.ToString());
 		}
+	}
 
+	private void OnDestroy()
+	{
+		EnemyPoolObject.EnemyRemoved -= HandleEnemyKill;
 	}
 }

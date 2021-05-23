@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -36,11 +37,15 @@ public class GameOverViewController : MonoBehaviour, IInitializable
                 ShowView();
                 break;
         }
-
     }
 
     public void BackToMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    private void OnDestroy()
+    {
+        GameController.GameStateChange -= HandleGameStateChanged;
     }
 }

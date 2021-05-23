@@ -22,4 +22,12 @@ public class EnemyManager : BaseManager<EnemyPoolObject>
 			unit.Move(Time.fixedDeltaTime);
 		}
 	}
+
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+		
+		EnemyPoolObject.EnemySpawn -= AddUnit;
+		EnemyPoolObject.EnemyRemoved -= RemoveUnit;
+	}
 }

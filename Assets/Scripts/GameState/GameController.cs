@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Player;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -30,5 +29,10 @@ public class GameController : MonoBehaviour
 		{
 			initializable.Initialize();
 		}
+	}
+
+	private void OnDestroy()
+	{
+		playerController.PlayerDead -= HandlePlayerDead;
 	}
 }

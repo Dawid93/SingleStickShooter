@@ -27,4 +27,11 @@ public class TimerManager : BaseManager<Timer>
 
 		timersCount = units.Count;
 	}
+
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+		
+		Timer.TimerCreate -= AddUnit;
+	}
 }

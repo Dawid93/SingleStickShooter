@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,5 +34,10 @@ public abstract class BaseManager<T> : MonoBehaviour, IInitializable
 	protected void RemoveUnit(T unit)
 	{
 		units.Remove(unit);
+	}
+
+	protected virtual void OnDestroy()
+	{
+		GameController.GameStateChange -= HandleGameStateChange;
 	}
 }

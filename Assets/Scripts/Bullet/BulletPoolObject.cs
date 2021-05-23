@@ -1,6 +1,5 @@
 using System;
 using ObjectPool;
-using Player;
 using UnityEngine;
 
 public class BulletPoolObject : BasePoolObject

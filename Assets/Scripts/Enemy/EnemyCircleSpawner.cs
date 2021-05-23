@@ -64,4 +64,9 @@ public class EnemyCircleSpawner : MonoBehaviour, IInitializable
 		var spawnPos = centerOfCircle.position + spawnDir * circleRadius;
 		return spawnPos;
 	}
+
+	private void OnDestroy()
+	{
+		GameController.GameStateChange -= HandleGameStateChanged;
+	}
 }

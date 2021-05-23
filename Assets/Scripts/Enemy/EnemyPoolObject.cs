@@ -1,6 +1,5 @@
 using System;
 using ObjectPool;
-using Player;
 using UnityEngine;
 
 public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
@@ -54,6 +53,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 	{
 		if (other.TryGetComponent(out UnitHealth unit))
 		{
+			Debug.Log($"Other name {other.name}");
 			unit.TakeDamage(damage);
 			SelfReturn();
 		}

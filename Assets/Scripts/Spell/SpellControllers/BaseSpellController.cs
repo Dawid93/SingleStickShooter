@@ -59,4 +59,9 @@ public abstract class BaseSpellController : MonoBehaviour, IInitializable
 	protected virtual void PrepareSpell(Vector3 spawnPoint, Quaternion rotation)
 	{
 	}
+
+	private void OnDestroy()
+	{
+		GameController.GameStateChange -= HandleGameStateChanged;
+	}
 }

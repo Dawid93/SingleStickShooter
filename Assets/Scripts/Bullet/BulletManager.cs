@@ -23,4 +23,11 @@ public class BulletManager : BaseManager<BulletPoolObject>
             unit.Move(Time.fixedDeltaTime);
         }
     }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        BulletPoolObject.BulletSpawn -= AddUnit;
+        BulletPoolObject.BulletRemoved -= RemoveUnit;
+    }
 }
