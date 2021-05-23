@@ -3,7 +3,7 @@ using ObjectPool;
 using Player;
 using UnityEngine;
 
-public class EnemyPoolObject : BasePoolObject
+public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 {
 	public static event Action<EnemyPoolObject> EnemySpawn;
 	public static event Action<EnemyPoolObject> EnemyRemoved;
@@ -19,6 +19,7 @@ public class EnemyPoolObject : BasePoolObject
 
 	private Vector3 playerPos;
 	private float maxHealth;
+	private Timer timer;
 
 	public override void OnCreate(string poolTag, ObjectPooler objectPooler)
 	{
@@ -31,6 +32,7 @@ public class EnemyPoolObject : BasePoolObject
 
 	public override void OnSpawn()
 	{
+		enemyMove.SetDefaultSpeed(speed);
 		RotateToTarget();
 		WasKilled = false;
 		enemyHealth.SetHealth(currentDifficultySettings.EnemyHealth);
@@ -54,7 +56,7 @@ public class EnemyPoolObject : BasePoolObject
 
 	public void Move(float deltaTime)
 	{
-		enemyMove.MoveForward(speed, deltaTime);
+		enemyMove.MoveForward(deltaTime);
 	}
 
 	private void RotateToTarget()
@@ -66,5 +68,22 @@ public class EnemyPoolObject : BasePoolObject
 	{
 		WasKilled = true;
 		SelfReturn();
+	}
+
+	public void ChangeSpeed(float factorModifier, float duration)
+	{
+		if (timer == null)
+		{
+			timer = new Timer(duration, OnTimerComplete);
+			enemyMove.ChangeSpeed(factorModifier);
+		}
+		else
+			timer.ResetTimer();
+	}
+
+	private void OnTimerComplete()
+	{
+		timer = null;
+		enemyMove.ResetSpeed();
 	}
 }

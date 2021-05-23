@@ -19,3 +19,9 @@ MonoBehaviour:
   - poolTag: enemy
     poolObject: {fileID: 4916515054150122408, guid: b924f30fe8a76461d979e46899b0d7fb, type: 3}
     poolSize: 100
+  - poolTag: offensiveSpell
+    poolObject: {fileID: 8808273610919466243, guid: 402b7209f081047cc99f1028abd64753, type: 3}
+    poolSize: 20
+  - poolTag: slowdownSpell
+    poolObject: {fileID: 6723284156166530337, guid: 1d79e51ca4ecf44849966531d1703dd3, type: 3}
+    poolSize: 20

@@ -14,6 +14,7 @@ public class BulletPoolObject : BasePoolObject
 	
 	public override void OnSpawn()
 	{
+		bulletMove.SetDefaultSpeed(bulletSpeed);
 		BulletSpawn?.Invoke(this);
 	}
 
@@ -33,6 +34,6 @@ public class BulletPoolObject : BasePoolObject
 
 	public void Move(float deltaTime)
 	{
-		bulletMove.MoveForward(bulletSpeed, deltaTime);
+		bulletMove.MoveForward(deltaTime);
 	}
 }

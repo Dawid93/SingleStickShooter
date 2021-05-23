@@ -15,4 +15,4 @@ MonoBehaviour:
   difficultyLevel: 2
   playerHealth: 150
   enemyHealth: 100
-  timeToSpawn: 0.2
+  timeToSpawn: 5
