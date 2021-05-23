@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.UI;
@@ -57,4 +58,10 @@ public class SpellIcon : MonoBehaviour
 	{
 		spellIconFill.fillAmount = fill;
 	}
+
+	private void OnDestroy()
+	{
+		baseSpellController.StartCooldown -= HandleStartCooldownCountdown;
+		baseSpellController.FinishCooldown -= HandleStopCountdown;
+		baseSpellController.SpellUse -= HandleBaseSpellUse;	}
 }

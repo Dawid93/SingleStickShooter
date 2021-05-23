@@ -32,4 +32,9 @@ public class GameTimer : MonoBehaviour, IInitializable
 
 		GameTime += Time.deltaTime;
 	}
+
+	private void OnDestroy()
+	{
+		GameController.GameStateChange -= HandleGameStateChanged;
+	}
 }

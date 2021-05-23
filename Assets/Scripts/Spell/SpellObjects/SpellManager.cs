@@ -22,4 +22,12 @@ public class SpellManager : BaseManager<BaseSpellPoolObject>
 			unit.Move(Time.fixedDeltaTime);
 		}
 	}
+
+	protected override void OnDestroy()
+	{
+		base.OnDestroy();
+		
+		BaseSpellPoolObject.SpellCreate -= AddUnit;
+		BaseSpellPoolObject.SpellRemove -= RemoveUnit;
+	}
 }
