@@ -14,6 +14,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 	[SerializeField] private MaterialColorModifier materialModifier;
 	[SerializeField] private float speed = 1f;
 	[SerializeField] private float damage = 50f;
+	[SerializeField] private Rigidbody rBody;
 
 	private static DifficultySettings currentDifficultySettings;
 
@@ -30,7 +31,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 
 		materialModifier.Setup(GetComponent<Renderer>());
 		playerPos = FindObjectOfType<PlayerController>().transform.position;
-		
+		enemyMove.SetRigidbody(rBody);
 		enemyHealth.Dead += HandleDead;
 	}
 
@@ -41,11 +42,13 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 		WasKilled = false;
 		enemyHealth.SetHealth(currentDifficultySettings.EnemyHealth);
 		materialModifier.SetColor(EnemyColorRandomizer.GetRandomColor());
+		rBody.WakeUp();
 		EnemySpawn?.Invoke(this);
 	}
 
 	public override void OnReturn()
 	{
+		rBody.Sleep();
 		EnemyRemoved?.Invoke(this);
 	}
 
@@ -61,7 +64,7 @@ public class EnemyPoolObject : BasePoolObject, ISpeedChangeable
 
 	public void Move(float deltaTime)
 	{
-		enemyMove.MoveTransformForward(deltaTime);
+		enemyMove.MoveRigidbodyForward(deltaTime);
 	}
 
 	private void RotateToTarget()
